@@ -16,3 +16,4 @@ sample.cpp
 shadertest.cpp
 simple.cpp
 test.cpp
+*.exe
