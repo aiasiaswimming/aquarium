@@ -24,7 +24,7 @@ void main() {
 	float y = offset.y + (position.y) * distortion;
 	
 	
-	out_color = vec4( z*5 , (1-z)*5, 0.4, 1.0);
+	out_color = vec4( z*5 , (1-z)*5, z*0.4, 1.0);
 	
 	
 	gl_Position = vec4(x, y, z, 1.0 );

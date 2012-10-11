@@ -8,10 +8,6 @@
 #include <vector>
 #include <cstdlib>
 
-
-//STILL GOTTA MAKE THE SHADERS, MAN. VERTEX AND FRAGMENT.
-
-
 using namespace std;
 
 enum { ATTRIB_POS };
@@ -151,11 +147,9 @@ void generateFishModel(){
 void generateSchool() {
 	generateFishModel();
 	for(int i=0; i < MAX_FISH; i++) {
-		school[i].startTime = fRand() * 8000.0;
-		school[i].x = 1.2;					//x offscreen right
-		if(fRand() > 0.5)
-			school[i].x *= -1.0;			//50% chance of changing to x offscreen left
+		school[i].startTime = fRand() * 10.0;
 		
+		school[i].x = 1.2;		
 		school[i].y = fRand() - 0.5;	//random start y between +0.5 and -0.5
 		school[i].z = fRand() - 0.5;	//random start z between +0.5 and -0.5
 		
@@ -229,14 +223,14 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT);
 				
 		t += 0.02;
-		if(t > 8000.0) {	//"refreshes" every minute
+		if(t > 100.0) {	//"refreshes" every minute
 			glClear(GL_COLOR_BUFFER_BIT);			
 			generateSchool();
 			t = 0;
 		}
 		
 		for(int i = 0; i < MAX_FISH; ++i) {
-			if(school[i].startTime > t && school[i].x < 1.2) {
+			if(school[i].startTime < t) {
 				school[i].x += school[i].addx;
 				school[i].y += school[i].addy;
 				school[i].z += school[i].addz;
@@ -255,3 +249,6 @@ int main() {
 	glfwTerminate();
 	return 0;
 }
+
+
+//eof
