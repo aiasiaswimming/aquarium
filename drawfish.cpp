@@ -147,14 +147,14 @@ void generateFishModel(){
 void generateSchool() {
 	generateFishModel();
 	for(int i=0; i < MAX_FISH; i++) {
-		school[i].startTime = fRand() * 10.0;
+		school[i].startTime = fRand() * 100.0;
 		
 		school[i].x = 1.2;		
 		school[i].y = fRand() - 0.5;	//random start y between +0.5 and -0.5
 		school[i].z = fRand() - 0.5;	//random start z between +0.5 and -0.5
 		
 		//increments are in range [+0.25, -0.25]
-		school[i].addx = 0.05 * fRand() - 0.025;
+		school[i].addx = -0.01 * fRand() - 0.025;
 		school[i].addy = 0.05 * fRand() - 0.025;
 		school[i].addz = 0.05 * fRand() - 0.025;
 	}
@@ -231,9 +231,9 @@ int main() {
 		
 		for(int i = 0; i < MAX_FISH; ++i) {
 			if(school[i].startTime < t) {
-				school[i].x += school[i].addx;
+				school[i].x += school[i].addx ;
 				school[i].y += school[i].addy;
-				school[i].z += school[i].addz;
+				//school[i].z += school[i].addz;
 				glUniform3f(OFFSET_UNIFORM, school[i].x, school[i].y, school[i].z);
 				drawAll(128*2,6);
 			}

@@ -9,7 +9,7 @@ uniform vec3 offset; 	//try changing/animating the uniform below in your code.
 void main() {
 
 	float PIE = 3.14159265;
-	float wavelength = 1.5 * 1.2;		//must be > width to look like fish. < width looks like jellyfish.
+	float wavelength = 1.0;		//must be > width to look like fish. < width looks like jellyfish.
 	float depth_displacement = 0.2;
 	float depth_distort = 0.4;
 	
