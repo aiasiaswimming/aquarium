@@ -5,6 +5,7 @@ attribute vec3 position;
 varying vec4 out_color;
 
 uniform vec3 offset; 	//try changing/animating the uniform below in your code.
+uniform float t;
 
 void main() {
 

@@ -21,7 +21,7 @@ struct Fish {
 
 const float PIE = 3.14159265f;
 const GLsizei MAX_VERTICES = 128*4+16;
-const GLsizei MAX_FISH = 100;
+const GLsizei MAX_FISH = 500;
 
 GLfloat vertices[MAX_VERTICES], colors[MAX_VERTICES];
 Fish school[MAX_FISH];
@@ -210,8 +210,10 @@ int main() {
 	glMatrixMode(GL_MODELVIEW); glLoadIdentity();
 	
 	GLuint OFFSET_UNIFORM = glGetUniformLocation(mainProgram, "offset");
+	GLuint OFFSET_T = glGetUniformLocation(mainProgram, "t");
 		
 	// READY!
+	double abs_t = 0.0;
 	double t = 0.0;
 	
 	do {		
@@ -222,6 +224,7 @@ int main() {
 		glViewport( 0, 0, width, height );
 		glClear(GL_COLOR_BUFFER_BIT);
 				
+		abs_t += 0.02;
 		t += 0.02;
 		if(t > 100.0) {	//"refreshes" every minute
 			glClear(GL_COLOR_BUFFER_BIT);			
@@ -230,7 +233,8 @@ int main() {
 		}
 		
 		for(int i = 0; i < MAX_FISH; ++i) {
-			if(school[i].startTime < t) {
+			glUniform1f(OFFSET_T, t);
+			if(school[i].startTime < t && school[i].x > -1.5 ) {
 				school[i].x += school[i].addx ;
 				school[i].y += school[i].addy;
 				//school[i].z += school[i].addz;
